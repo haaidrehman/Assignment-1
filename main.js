@@ -63,48 +63,59 @@ document.querySelectorAll(".dropdown-menu").forEach(function (dropDownList) {
 let dishes = [];
 document.querySelectorAll(".dropdown-menu ul li").forEach(function (element) {
 
-  element.addEventListener('click', function(e){
+  element.addEventListener('click', function (e) {
     e.target.classList.add('list-active');
     // console.log(e.target.innerText, e.target.children[0].innerText);
     console.log(e);
-      let key = element.childNodes[0].data;
-      let value = element.childNodes[1].innerText;
-          dishes.push({
-            [key]:value 
-          });
-          
-          console.log(dishes);
-        });
+    let key = element.childNodes[0].data;
+    let value = element.childNodes[1].innerText;
+    dishes.push({
+      [key]: value
+    });
+
+    console.log(dishes);
+  });
 
 
 
-  
+
 });
 
 
 let sumTotal = 0;
 
-function displayItemList(){
-    if(dishes.length){
-       console.log(dishes);
-        let orderList = document.querySelector('.yourOrder ul');
-        let total = document.querySelector('.total p');
-      
-        dishes.forEach(function(e){
-          console.log(e);
-          for(let [k, v] of Object.entries(e)){
-          console.log(k , v);
-          sumTotal += parseInt(v);
-          orderList.innerHTML += `<li><span>${k}</span> <span>Rs. ${v}</span></li>`;
-          total.innerText = sumTotal;
-          dishes = [];
+function displayItemList() {
+  if (dishes.length) {
+    console.log(dishes);
+    let orderList = document.querySelector('.yourOrder ul');
+    let total = document.querySelector('.total p');
 
-          console.log(sumTotal);
-        }
-        
-         
-        });
+    dishes.forEach(function (e) {
+      console.log(e);
+      for (let [k, v] of Object.entries(e)) {
+        console.log(k, v);
+        sumTotal += parseInt(v);
+        orderList.innerHTML += `<li><span>${k}</span> <span>Rs. ${v}</span></li>`;
+        total.innerText = sumTotal;
+        dishes = [];
 
-        
-    }
+        console.log(sumTotal);
+      }
+
+
+    });
+
+
+  }
+}
+
+
+
+
+function removeOrders() {
+  let orderList = document.querySelector('.yourOrder ul');
+  let total = document.querySelector('.total p');
+  orderList.innerHTML = '';
+  total.innerHTML = '';
+
 }
